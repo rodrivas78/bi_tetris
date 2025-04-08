@@ -329,207 +329,7 @@ func clear_piece():
 
 func draw_piece(piece, pos, atlas):
 	for i in piece:
-	#criar aqui condicionais para troca de cor dos tiles de acordo com a peça
-		if piece == o_0:
-			if i == Vector2i(0,0) or i == Vector2i(1,1): 
-				atlas = Vector2i(3,0)  # Cor 1
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:  
-				atlas = Vector2i(0,0)  # Cor 2
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == o_90:
-			if i == Vector2i(1,0) or i == Vector2i(0,1):  
-				atlas = Vector2i(3,0)  # Cor 1 (girado)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:  
-				atlas = Vector2i(0,0)  # Cor 2
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == o_180:
-			if i == Vector2i(1,1) or i == Vector2i(0,0):  
-				atlas = Vector2i(3,0)  # Cor 1 (girado novamente)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:  
-				atlas = Vector2i(0,0)  # Cor 2
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == o_270:
-			if i == Vector2i(0,1) or i == Vector2i(1,0):  
-				atlas = Vector2i(3,0)  # Cor 1 (última rotação)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:  
-				atlas = Vector2i(0,0)  # Cor 2
-				set_cell(active_layer, pos + i, tile_id, atlas)
-				
-		elif piece == j_0:
-			if i == Vector2i(0,0) or i == Vector2i(2,1): 
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else: 
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == j_90:
-			if i == Vector2i(2,0) or i == Vector2i(1,2):
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == j_180:
-			if i == Vector2i(0,1) or i == Vector2i(2,2):
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == j_270:
-			if i == Vector2i(0,2) or i == Vector2i(1,0):
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == t_0:
-			if i == Vector2i(1,0) or i == Vector2i(0,1) or i == Vector2i(2,1): 
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else: 
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == t_90:
-			if i == Vector2i(1,0) or i == Vector2i(2,1) or i == Vector2i(1,2):
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == t_180:
-			if i == Vector2i(0,1) or i == Vector2i(2,1) or i == Vector2i(1,2):
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == t_270:
-			if i == Vector2i(1,0) or i == Vector2i(0,1) or i == Vector2i(1,2):
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == z_0:
-			if i == Vector2i(0,0) or i == Vector2i(2,1): 
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else: 
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == z_90:
-			if i == Vector2i(2,0) or i == Vector2i(1,2):
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == z_180:
-			if i == Vector2i(0,1) or i == Vector2i(2,2):
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == z_270:
-			if i == Vector2i(1,0) or i == Vector2i(0,2):
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == s_0:
-			if i == Vector2i(2,0) or i == Vector2i(0,1): 
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else: 
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == s_90:
-			if i == Vector2i(1,0) or i == Vector2i(2,2):
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == s_180:
-			if i == Vector2i(2,1) or i == Vector2i(0,2):
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == s_270:
-			if i == Vector2i(0,0) or i == Vector2i(1,2):
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == l_0:
-			if i == Vector2i(2,0) or i == Vector2i(0,1): 
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else: 
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == l_90:
-			if i == Vector2i(1,0) or i == Vector2i(2,2):
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == l_180:
-			if i == Vector2i(2,1) or i == Vector2i(0,2):
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == l_270:
-			if i == Vector2i(0,0) or i == Vector2i(1,2):
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == i_0:
-			if i == Vector2i(0,1) or i == Vector2i(3,1): 
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else: 
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == i_90:
-			if i == Vector2i(2,0) or i == Vector2i(2,3):
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == i_180:
-			if i == Vector2i(0,2) or i == Vector2i(3,2):
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-		elif piece == i_270:
-			if i == Vector2i(1,0) or i == Vector2i(1,3):
-				atlas = Vector2i(3,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-			else:
-				atlas = Vector2i(0,0)
-				set_cell(active_layer, pos + i, tile_id, atlas)
-
-		else: 
-			set_cell(active_layer, pos + i, tile_id, atlas)
+		set_cell(active_layer, pos + i, tile_id, atlas)
 
 func rotate_piece():
 	if can_rotate():
@@ -605,231 +405,7 @@ func land_piece():
 	# Remove cada segmento da camada ativa e move para a camada do tabuleiro
 	for i in active_piece:
 		erase_cell(active_layer, cur_pos + i)
-		if active_piece == o_0:
-			if i == Vector2i(0,0) or i == Vector2i(1,1):
-				piece_atlas = Vector2i(3,0)  # Cor 1
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)  # Cor 2
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-
-		elif active_piece == o_90:
-			if i == Vector2i(1,0) or i == Vector2i(0,1):
-				piece_atlas = Vector2i(3,0)  # Cor 1 (girado)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)  # Cor 2
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == o_180:
-			if i == Vector2i(1,1) or i == Vector2i(0,0):
-				piece_atlas = Vector2i(3,0)  # Cor 1 (girado novamente)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)  # Cor 2
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == o_270:
-			if i == Vector2i(0,1) or i == Vector2i(1,0):
-				piece_atlas = Vector2i(3,0)  # Cor 1 (última rotação)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)  # Cor 2
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == j_0:
-			if i == Vector2i(0,0) or i == Vector2i(2,1): 
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else: 
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == j_90:
-			if i == Vector2i(2,0) or i == Vector2i(1,2):
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == j_180:
-			if i == Vector2i(0,1) or i == Vector2i(2,2):
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == j_270:
-			if i == Vector2i(0,2) or i == Vector2i(1,0):
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == t_0:
-			if i == Vector2i(1,0) or i == Vector2i(0,1) or i == Vector2i(2,1): 
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else: 
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == t_90:
-			if i == Vector2i(1,0) or i == Vector2i(2,1) or i == Vector2i(1,2):
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == t_180:
-			if i == Vector2i(0,1) or i == Vector2i(2,1) or i == Vector2i(1,2):
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == t_270:
-			if i == Vector2i(1,0) or i == Vector2i(0,1) or i == Vector2i(1,2):
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == z_0:
-			if i == Vector2i(0,0) or i == Vector2i(2,1): 
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else: 
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == z_90:
-			if i == Vector2i(2,0) or i == Vector2i(1,2):
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == z_180:
-			if i == Vector2i(0,1) or i == Vector2i(2,2):
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == z_270:
-			if i == Vector2i(1,0) or i == Vector2i(0,2):
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == s_0:
-			if i == Vector2i(2,0) or i == Vector2i(0,1): 
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else: 
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == s_90:
-			if i == Vector2i(1,0) or i == Vector2i(2,2):
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == s_180:
-			if i == Vector2i(2,1) or i == Vector2i(0,2):
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == s_270:
-			if i == Vector2i(0,0) or i == Vector2i(1,2):
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == l_0:
-			if i == Vector2i(2,0) or i == Vector2i(0,1): 
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else: 
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == l_90:
-			if i == Vector2i(1,0) or i == Vector2i(2,2):
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == l_180:
-			if i == Vector2i(2,1) or i == Vector2i(0,2):
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == l_270:
-			if i == Vector2i(0,0) or i == Vector2i(1,2):
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == i_0:
-			if i == Vector2i(0,1) or i == Vector2i(3,1): 
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else: 
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == i_90:
-			if i == Vector2i(2,0) or i == Vector2i(2,3):
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == i_180:
-			if i == Vector2i(0,2) or i == Vector2i(3,2):
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-		elif active_piece == i_270:
-			if i == Vector2i(1,0) or i == Vector2i(1,3):
-				piece_atlas = Vector2i(3,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-				special_positions.append(cur_pos + i)
-			else:
-				piece_atlas = Vector2i(0,0)
-				set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
+		set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
 	# Atualiza os tiles adjacentes após a peça pousar
 	update_adjacent_tiles()
 	
@@ -1094,21 +670,42 @@ func toggle_pause():
 		#else:
 			#row -= 1
 
+#func check_rows():
+	#var row : int = ROWS
+	#while row > 0:
+		#var count = 0
+		#for i in range(10, 21):  # Alterado para percorrer apenas de 10 a 20
+			#if not is_free(Vector2i(i + 1, row)):
+				#count += 1
+		## Se a linha estiver cheia, apaga ela
+		#if count == (20 - 10 + 1):  # Agora a condição de linha cheia considera o novo range
+			#shift_rows_up(row)
+			#score += REWARD
+			#$HUD.get_node("ScoreLabel").text = "SCORE: " + str(score)
+			#speed += ACCEL
+		#else:
+			#row -= 1
+
 func check_rows():
 	var row : int = ROWS
 	while row > 0:
 		var count = 0
-		for i in range(10, 21):  # Alterado para percorrer apenas de 10 a 20
+		for i in range(10, 21):  # Verifica de colunas 10 a 20
 			if not is_free(Vector2i(i + 1, row)):
 				count += 1
-		# Se a linha estiver cheia, apaga ela
-		if count == (20 - 10 + 1):  # Agora a condição de linha cheia considera o novo range
-			shift_rows(row)
+
+		if count == (20 - 10 + 1):  # Linha cheia
+			if row >= 15:
+				shift_rows_up(row)
+			else:
+				shift_rows(row)
+			
 			score += REWARD
 			$HUD.get_node("ScoreLabel").text = "SCORE: " + str(score)
 			speed += ACCEL
 		else:
 			row -= 1
+
 
 func shift_rows(row):
 	var atlas
@@ -1121,6 +718,20 @@ func shift_rows(row):
 			else:
 				set_cell(board_layer, Vector2i(j + 1, i), tile_id, atlas)
 				#update_adjacent_tiles()
+
+func shift_rows_up(row):
+	var atlas
+	for i in range(row, get_used_rect().position.y + get_used_rect().size.y - 1): # de row até o topo
+		for j in range(COLS):
+			var from_pos = Vector2i(j + 1, i + 1)
+			var to_pos = Vector2i(j + 1, i)
+			
+			atlas = get_cell_atlas_coords(board_layer, from_pos)
+			if atlas == Vector2i(-1, -1):
+				erase_cell(board_layer, to_pos)
+			else:
+				set_cell(board_layer, to_pos, tile_id, atlas)
+
 
 func clear_board():
 	for i in range(ROWS):
