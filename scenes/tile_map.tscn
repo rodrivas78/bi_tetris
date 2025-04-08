@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bwxneirljy70c" path="res://assets/tetrominoes.png" id="1_7at63"]
 [ext_resource type="Script" path="res://TileMap.gd" id="2_y6mwb"]
-[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="3_vxlsc"]
+[ext_resource type="PackedScene" uid="uid://c8uurrm1ova0p" path="res://scenes/hud.tscn" id="3_vxlsc"]
 [ext_resource type="Texture2D" uid="uid://bli6phsx3enbj" path="res://assets/bg4.jpg" id="4_birf1"]
 [ext_resource type="Texture2D" uid="uid://dh4ojr6jvlmry" path="res://assets/bg3.jpg" id="4_js3uj"]
 [ext_resource type="Texture2D" uid="uid://ixqcdhxq3c6l" path="res://assets/Orbit_Blocks2.png" id="5_dvs50"]
