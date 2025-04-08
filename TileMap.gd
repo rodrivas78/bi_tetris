@@ -439,7 +439,7 @@ func update_adjacent_tiles():
 			
 	updateHudLabels()
 			
-	piece_count += 1
+	#piece_count += 1
 	
 	check_stage_conditions()
 	
@@ -654,37 +654,6 @@ func toggle_pause():
 	is_paused = not is_paused
 	game_running = is_paused
 			
-#func check_rows():
-	#var row : int = ROWS
-	#while row > 0:
-		#var count = 0
-		#for i in range(COLS):
-			#if not is_free(Vector2i(i + 1, row)):
-				#count += 1
-		##if row is full then erase it
-		#if count == COLS:
-			#shift_rows(row)
-			#score += REWARD
-			#$HUD.get_node("ScoreLabel").text = "SCORE: " + str(score)
-			#speed += ACCEL
-		#else:
-			#row -= 1
-
-#func check_rows():
-	#var row : int = ROWS
-	#while row > 0:
-		#var count = 0
-		#for i in range(10, 21):  # Alterado para percorrer apenas de 10 a 20
-			#if not is_free(Vector2i(i + 1, row)):
-				#count += 1
-		## Se a linha estiver cheia, apaga ela
-		#if count == (20 - 10 + 1):  # Agora a condição de linha cheia considera o novo range
-			#shift_rows_up(row)
-			#score += REWARD
-			#$HUD.get_node("ScoreLabel").text = "SCORE: " + str(score)
-			#speed += ACCEL
-		#else:
-			#row -= 1
 
 func check_rows():
 	var row : int = ROWS
