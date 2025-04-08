@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Orbit Blocks"
+config/name="CenTris"
 run/main_scene="res://scenes/tile_map.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
