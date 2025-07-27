@@ -500,6 +500,9 @@ func check_rows():
 			speed += ACCEL
 			stage += 1
 			$HUD.get_node("StageLabel").text = "Level: " + str(stage)
+			if score >= hi_score:
+				hi_score = score
+				$HUD.get_node("HiScoreLabel").text = "HI-SCORE: " + str(hi_score)
 		else:
 			row -= 1
 
