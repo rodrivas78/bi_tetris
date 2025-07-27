@@ -498,6 +498,8 @@ func check_rows():
 			score += REWARD
 			$HUD.get_node("ScoreLabel").text = "SCORE: " + str(score)
 			speed += ACCEL
+			stage += 1
+			$HUD.get_node("StageLabel").text = "Level: " + str(stage)
 		else:
 			row -= 1
 
@@ -505,21 +507,21 @@ func check_rows():
 func shift_rows(row):
 	var atlas
 	for i in range(row, 1, -1):
-		for j in range(COLS):
-			atlas = get_cell_atlas_coords(board_layer, Vector2i(j + 1, i - 1))
+		for j in range(7, 25):  # Apenas colunas 7 a 24
+			atlas = get_cell_atlas_coords(board_layer, Vector2i(j, i - 1))
 			if atlas == Vector2i(-1, -1):
 				lineExplosion.play()
-				erase_cell(board_layer, Vector2i(j + 1, i))
+				erase_cell(board_layer, Vector2i(j, i))
 			else:
-				set_cell(board_layer, Vector2i(j + 1, i), tile_id, atlas)
-				
+				set_cell(board_layer, Vector2i(j, i), tile_id, atlas)
+
 
 func shift_rows_up(row):
 	var atlas
-	for i in range(row, get_used_rect().position.y + get_used_rect().size.y - 1): # de row até o topo
-		for j in range(COLS):
-			var from_pos = Vector2i(j + 1, i + 1)
-			var to_pos = Vector2i(j + 1, i)
+	for i in range(row, get_used_rect().position.y + get_used_rect().size.y - 1):
+		for j in range(7, 25):  # Apenas colunas 7 a 24
+			var from_pos = Vector2i(j, i + 1)
+			var to_pos = Vector2i(j, i)
 			
 			atlas = get_cell_atlas_coords(board_layer, from_pos)
 			if atlas == Vector2i(-1, -1):
@@ -529,11 +531,11 @@ func shift_rows_up(row):
 				set_cell(board_layer, to_pos, tile_id, atlas)
 
 
-func clear_board():
+func clear_board(): 
 	for i in range(ROWS):
-		for j in range(COLS):
-			erase_cell(board_layer, Vector2i(j + 1, i + 1))
-			erase_cell(active_layer, Vector2i(j + 1, i + 1))
+		for j in range(7, 25):  # Apenas colunas 7 a 24
+			erase_cell(board_layer, Vector2i(j, i + 1))
+			erase_cell(active_layer, Vector2i(j, i + 1))
 
 func check_game_over():
 	for i in active_piece:
@@ -551,7 +553,7 @@ func check_game_over():
 			game_running = false
 
 func updateHudLabels():
-	$HUD.get_node("StageLabel").text = "Stage: " + str(stage)
+	$HUD.get_node("StageLabel").text = "Level: " + str(stage)
 	$HUD.get_node("PiecesLabel").text = "Pieces: " + str(piece_count)
 	$HUD.get_node("RedTilesLabel").text = "= " + str(red_tiles)
 	$HUD.get_node("BlueTilesLabel").text = "= " + str(blue_tiles)

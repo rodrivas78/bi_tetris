@@ -143,7 +143,7 @@ offset_top = 858.0
 offset_right = 1343.0
 offset_bottom = 903.0
 theme_override_font_sizes/font_size = 30
-text = "Stage: 1"
+text = "Level: 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
