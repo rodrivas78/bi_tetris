@@ -147,6 +147,7 @@ var special_positions := []
 @onready var gameTitleMusic : AudioStreamPlayer = $GameTitleMusic
 @onready var gameWinMusic : AudioStreamPlayer = $GameWinMusic
 @onready var gameWinSound : AudioStreamPlayer = $GameWinSound
+@onready var lineExplosion : AudioStreamPlayer = $LineExplosionSound
 
 @onready var gameMusic : AudioStreamPlayer = $GameMusic
 
@@ -368,7 +369,7 @@ func move_piece(dir):
 			clear_panel()
 			spawn_side = randi() % 2
 			create_piece()
-			#check_game_over()
+			check_game_over()
 
 
 func can_move(dir):
@@ -406,188 +407,8 @@ func land_piece():
 	for i in active_piece:
 		erase_cell(active_layer, cur_pos + i)
 		set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
-	# Atualiza os tiles adjacentes após a peça pousar
-	update_adjacent_tiles()
-	
-		
-func update_adjacent_tiles():
-	red_tiles = 0
-	blue_tiles = 0
-	var directions = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
-
-	for pos in special_positions:
-		var occupied_count = 0
-		
-		# Conta quantas posições adjacentes estão ocupadas
-		for dir in directions:
-			if not is_free(pos + dir):
-				occupied_count += 1
-		# Define a cor apenas para 1 a 4 espaços ocupados
-		var new_atlas = piece_atlas  # Mantém a cor original por padrão
-		if occupied_count == 1:  
-			new_atlas = Vector2i(3, 0) #vermelho
-			red_tiles += 1
-		elif occupied_count == 2:  
-			new_atlas = Vector2i(2, 0) #amarelo
-		elif occupied_count == 3:  
-			new_atlas = Vector2i(4, 0) #verde
-		elif occupied_count == 4:  
-			new_atlas = Vector2i(6, 0) #azul
-			blue_tiles += 1
-	
-		#set_cell(board_layer, pos, tile_id, new_atlas)
 			
-	updateHudLabels()
-			
-	#piece_count += 1
-	
-	check_stage_conditions()
-	
-
-# Definição das condições para cada fase
-var stage_conditions = {
-	1: { "total_pieces": 100, "min_blue": 4, "max_red": 3 },
-	2: { "total_pieces": 10, "min_blue": 6, "max_red": 3 },
-	3: { "total_pieces": 12, "min_blue": 8, "max_red": 2 },
-	4: { "total_pieces": 12, "min_blue": 9, "max_red": 2 },
-	5: { "total_pieces": 14, "min_blue": 10, "max_red": 2 },
-	6: { "total_pieces": 14, "min_blue": 11, "max_red": 2 },
-	7: { "total_pieces": 16, "min_blue": 12, "max_red": 1 },
-	8: { "total_pieces": 16, "min_blue": 13, "max_red": 1 },
-	9: { "total_pieces": 18, "min_blue": 14, "max_red": 1 },
-	10: { "total_pieces": 18, "min_blue": 15, "max_red": 1 },
-	11: { "total_pieces": 20, "min_blue": 16, "max_red": 0 },
-	12: { "total_pieces": 20, "min_blue": 17, "max_red": 0 },
-	13: { "total_pieces": 22, "min_blue": 18, "max_red": 0 },
-	14: { "total_pieces": 22, "min_blue": 19, "max_red": 0 },
-	15: { "total_pieces": 24, "min_blue": 20, "max_red": 0 },
-}
-
-func check_stage_conditions():
-	if stage_conditions.has(stage):
-		var conditions = stage_conditions[stage]
-		var total_pieces = conditions["total_pieces"]
-		var min_blue = conditions["min_blue"]
-		var max_red = conditions["max_red"]
 		
-		# Atualiza cores dos painéis com base nas quantidades de peças
-		update_panel_colors(min_blue, max_red)
-		
-		if piece_count == total_pieces:
-			if blue_tiles >= min_blue and red_tiles <= max_red:
-				#chamar  método de contagem de pontos
-				advance_stage()
-			else:
-				game_over()
-			
-				
-func advance_stage():
-	pick_or_create_piece_enabled = false
-	await show_level_completed()
-	await calculate_score()
-	stage += 1
-	clear_board()
-	piece_count = 0
-	blue_tiles = 0
-	red_tiles = 0
-	special_positions = []
-	#create_fixed_center_piece()
-	#await get_tree().create_timer(2).timeout
-	speed += ACCEL
-	game_running = true
-	pick_or_create_piece_enabled = true
-	updateHudLabels()
-	check_stage_conditions()
-	
-	if stage >= 16:
-		$HUD.get_node("StageLabel").text = "Stage: " + str("15")
-		set_music_fade_out()
-		game_running = false
-		clear_panel()
-		end_of_the_game = true 
-		await get_tree().create_timer(2).timeout
-		show_victory()
-		gameWinSound.play()
-		await get_tree().create_timer(4).timeout
-		gameWinMusic.volume_db = 0.0
-		gameWinMusic.play()
-		start_button.visible = false
-		closed_board.visible = true
-		#sprite_bg_win.visible = true
-		show_win_background()
-		start_sequence()
-		
-	else:
-		create_fixed_center_piece()
-		s
-					
-func update_panel_colors(min_blue, max_red):
-	# Atualiza a cor do painel vermelho
-	if red_tiles > max_red:
-		panel_red_node.change_color(Color(1, 0, 0))  # Vermelho (falha)
-	else:
-		panel_red_node.change_color(Color(0, 1, 0))  # Verde (dentro do limite)
-	
-	# Atualiza a cor do painel azul
-	if blue_tiles < min_blue:
-		panel_blue_node.change_color(Color(1, 0, 0))  # Vermelho (falha)
-	else:
-		panel_blue_node.change_color(Color(0, 1, 0))  # Verde (dentro do limite)
-		
-# Exibe "Level Completed" por 2 segundos
-func show_level_completed():
-	var level_label = $HUD.get_node("LevelCompletedLabel")
-	level_label.text = "LEVEL COMPLETED!"
-	levelCompletedSound.play()
-	game_running = false
-	level_label.show()
-	await get_tree().create_timer(2).timeout
-	
-func calculate_score():
-	var blue_multiplication_factor = $HUD.get_node("BlueMultiplicationFactor")
-	var red_bonus_factor = $HUD.get_node("RedMultiplicationFactor")
-	var red_tiles_panel = $HUD.get_node("RedTilesPanel")
-	var blue_tiles_panel = $HUD.get_node("BlueTilesPanel")
-	$HUD.get_node("LevelCompletedLabel").hide()
-	
-	blue_multiplication_factor.show()
-	red_bonus_factor.show()
-	red_tiles_panel.hide()
-	blue_tiles_panel.hide()
-	
-	var score_increment = (blue_tiles * 50) # Cada peça azul vale 50 pontos
-	
-	# Lógica de pontuação para peças vermelhas
-	match red_tiles:
-		0:
-			score_increment += 300
-			red_bonus_factor.text = "+300"
-		1:
-			score_increment += 200
-			red_bonus_factor.text = "+200"
-		2:
-			score_increment += 100
-			red_bonus_factor.text = "+100"
-		_:
-			score_increment += 0  # Ou apenas não faça nada
-			red_bonus_factor.text = ""
-	
-	# Atualiza o score
-	for i in range(score_increment/10):
-		score += 10
-		moveSound.play()
-		$HUD.get_node("ScoreLabel").text = "SCORE: " + str(score)
-		await get_tree().create_timer(0.003).timeout
-		
-	if score >= hi_score:
-		hi_score = score
-	
-	blue_multiplication_factor.hide()
-	red_bonus_factor.hide()
-	red_tiles_panel.show()
-	blue_tiles_panel.show()
-	# Chama advance_stage() após calcular os pontos
-	
 func clear_panel():
 	for i in range(36, 42):
 		for j in range(4, 8):
@@ -596,16 +417,12 @@ func clear_panel():
 
 func game_over():
 	closed_board.visible = true
-
 	if not isMusicSilenced:
 		toggle_music()
-
 	gameOverSound.play()
 	$HUD.get_node("GameOverLabel").show()
 	$HUD.get_node("ContinueButton").show()
-	
 	$HUD.get_node("StartButton").flat = true
-	
 	$HUD.get_node("ContinueButton").pressed.connect(continue_game)
 	game_running = false
 	
@@ -659,16 +476,25 @@ func check_rows():
 	var row : int = ROWS
 	while row > 0:
 		var count = 0
-		for i in range(10, 21):  # Verifica de colunas 10 a 20
-			if not is_free(Vector2i(i + 1, row)):
+		for i in range(7, 25):  # Verifica colunas de 7 a 24
+			if not is_free(Vector2i(i, row)):
 				count += 1
 
-		if count == (20 - 10 + 1):  # Linha cheia
+		if count == (24 - 7 + 1):  # Linha cheia (18 colunas)
+			# 1. Pintar de vermelho (ajuste a cor conforme seu atlas)
+			for j in range(7, 25):
+				set_cell(board_layer, Vector2i(j, row), tile_id, Vector2i(3, 0))  # Vermelho
+
+			# 2. Aguardar 1 segundo
+			await get_tree().create_timer(1.0).timeout
+
+			# 3. Apagar ou mover linha
 			if row >= 15:
 				shift_rows_up(row)
 			else:
 				shift_rows(row)
-			
+
+			# 4. Atualizar score e velocidade
 			score += REWARD
 			$HUD.get_node("ScoreLabel").text = "SCORE: " + str(score)
 			speed += ACCEL
@@ -682,11 +508,11 @@ func shift_rows(row):
 		for j in range(COLS):
 			atlas = get_cell_atlas_coords(board_layer, Vector2i(j + 1, i - 1))
 			if atlas == Vector2i(-1, -1):
+				lineExplosion.play()
 				erase_cell(board_layer, Vector2i(j + 1, i))
-				#update_adjacent_tiles()
 			else:
 				set_cell(board_layer, Vector2i(j + 1, i), tile_id, atlas)
-				#update_adjacent_tiles()
+				
 
 func shift_rows_up(row):
 	var atlas
@@ -697,6 +523,7 @@ func shift_rows_up(row):
 			
 			atlas = get_cell_atlas_coords(board_layer, from_pos)
 			if atlas == Vector2i(-1, -1):
+				lineExplosion.play()
 				erase_cell(board_layer, to_pos)
 			else:
 				set_cell(board_layer, to_pos, tile_id, atlas)
@@ -712,7 +539,15 @@ func check_game_over():
 	for i in active_piece:
 		if not is_free(i + cur_pos):
 			land_piece()
+			game_running = false
+			closed_board.visible = true
+			if not isMusicSilenced:
+				toggle_music()
+			gameOverSound.play()
 			$HUD.get_node("GameOverLabel").show()
+			$HUD.get_node("ContinueButton").show()
+			$HUD.get_node("StartButton").flat = true
+			$HUD.get_node("ContinueButton").pressed.connect(continue_game)
 			game_running = false
 
 func updateHudLabels():
