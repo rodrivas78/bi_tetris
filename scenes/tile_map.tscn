@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://yosk4fwkxd5x"]
+[gd_scene load_steps=32 format=3 uid="uid://yosk4fwkxd5x"]
 
 [ext_resource type="Texture2D" uid="uid://bwxneirljy70c" path="res://assets/tetrominoes.png" id="1_7at63"]
 [ext_resource type="Script" path="res://TileMap.gd" id="2_y6mwb"]
@@ -23,10 +23,12 @@
 [ext_resource type="AudioStream" uid="uid://ckn2c8xnbvgl5" path="res://assets/sounds/increase_score.wav" id="12_5juw5"]
 [ext_resource type="Texture2D" uid="uid://dtawvwdyrep8m" path="res://assets/credit_2.png" id="12_qdqdf"]
 [ext_resource type="Texture2D" uid="uid://bpoiytnwj48tg" path="res://assets/esc_to_return.png" id="14_kmyva"]
+[ext_resource type="Texture2D" uid="uid://c2v04tw1ipuwi" path="res://assets/titulo_vetor9.png" id="15_e1up6"]
 [ext_resource type="AudioStream" uid="uid://etf4rebjnbr7" path="res://assets/sounds/TitleSong.mp3" id="17_7wqmu"]
 [ext_resource type="AudioStream" uid="uid://b66kytwmncguq" path="res://assets/sounds/line_explosion2.mp3" id="20_1o83a"]
 [ext_resource type="AudioStream" uid="uid://eg2goq2vcvj7" path="res://assets/sounds/you_won.mp3" id="20_ekctx"]
 [ext_resource type="AudioStream" uid="uid://cg3fdj1w7br2u" path="res://assets/sounds/level_up.mp3" id="23_mi8wk"]
+[ext_resource type="Texture2D" uid="uid://5f75xsugebui" path="res://assets/borda2.png" id="29_ptlop"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a08xs"]
 texture = ExtResource("1_7at63")
@@ -49,29 +51,28 @@ tile_set = SubResource("TileSet_l1uyk")
 rendering_quadrant_size = 32
 format = 2
 layer_0/name = "board"
-layer_0/tile_data = PackedInt32Array(1376292, 196608, 0, 1572900, 393216, 0, 65542, 458752, 0, 131078, 458752, 0, 196614, 458752, 0, 262150, 458752, 0, 327686, 458752, 0, 393222, 458752, 0, 458758, 458752, 0, 524294, 458752, 0, 589830, 458752, 0, 655366, 458752, 0, 720902, 458752, 0, 786438, 458752, 0, 851974, 458752, 0, 917510, 458752, 0, 983046, 458752, 0, 1048582, 458752, 0, 1114118, 458752, 0, 1179654, 458752, 0, 1245190, 458752, 0, 1310726, 458752, 0, 1376262, 458752, 0, 1441798, 458752, 0, 1507334, 458752, 0, 1572870, 458752, 0, 1638406, 458752, 0, 1703942, 458752, 0, 1769478, 458752, 0, 1835014, 458752, 0, 65561, 458752, 0, 131097, 458752, 0, 196633, 458752, 0, 262169, 458752, 0, 327705, 458752, 0, 393241, 458752, 0, 458777, 458752, 0, 524313, 458752, 0, 589849, 458752, 0, 655385, 458752, 0, 720921, 458752, 0, 786457, 458752, 0, 851993, 458752, 0, 917529, 458752, 0, 983065, 458752, 0, 1048601, 458752, 0, 1114137, 458752, 0, 1179673, 458752, 0, 1245209, 458752, 0, 1310745, 458752, 0, 1376281, 458752, 0, 1441817, 458752, 0, 1507353, 458752, 0, 1572889, 458752, 0, 1638425, 458752, 0, 1703961, 458752, 0, 1769497, 458752, 0, 1835033, 458752, 0)
+layer_0/tile_data = PackedInt32Array(65542, 458752, 0, 131078, 458752, 0, 196614, 458752, 0, 262150, 458752, 0, 327686, 458752, 0, 393222, 458752, 0, 458758, 458752, 0, 524294, 458752, 0, 589830, 458752, 0, 655366, 458752, 0, 720902, 458752, 0, 786438, 458752, 0, 851974, 458752, 0, 917510, 458752, 0, 983046, 458752, 0, 1048582, 458752, 0, 1114118, 458752, 0, 1179654, 458752, 0, 1245190, 458752, 0, 1310726, 458752, 0, 1376262, 458752, 0, 1441798, 458752, 0, 1507334, 458752, 0, 1572870, 458752, 0, 1638406, 458752, 0, 1703942, 458752, 0, 1769478, 458752, 0, 1835014, 458752, 0, 65561, 458752, 0, 131097, 458752, 0, 196633, 458752, 0, 262169, 458752, 0, 327705, 458752, 0, 393241, 458752, 0, 458777, 458752, 0, 524313, 458752, 0, 589849, 458752, 0, 655385, 458752, 0, 720921, 458752, 0, 786457, 458752, 0, 851993, 458752, 0, 917529, 458752, 0, 983065, 458752, 0, 1048601, 458752, 0, 1114137, 458752, 0, 1179673, 458752, 0, 1245209, 458752, 0, 1310745, 458752, 0, 1376281, 458752, 0, 1441817, 458752, 0, 1507353, 458752, 0, 1572889, 458752, 0, 1638425, 458752, 0, 1703961, 458752, 0, 1769497, 458752, 0, 1835033, 458752, 0)
 layer_1/name = "active"
 layer_1/tile_data = PackedInt32Array()
 script = ExtResource("2_y6mwb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(701, 481)
+position = Vector2(700, 481)
 texture = ExtResource("4_birf1")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-visible = false
 z_index = -1
 position = Vector2(701, 481)
 texture = ExtResource("4_js3uj")
 
 [node name="SpriteWinScreen" type="Sprite2D" parent="."]
-visible = false
 z_index = -1
 position = Vector2(513, 479)
 texture = ExtResource("5_u4xdp")
 
 [node name="SpriteTitle" type="Sprite2D" parent="."]
+visible = false
 z_index = -1
 position = Vector2(508, 286)
 texture = ExtResource("5_dvs50")
@@ -84,7 +85,8 @@ texture = ExtResource("7_x45pm")
 
 [node name="SpritePressNewGame" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(509, 661)
+position = Vector2(509, 753)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("6_2h7sj")
 script = ExtResource("7_ck7q3")
 
@@ -118,6 +120,11 @@ z_index = -1
 position = Vector2(329, 876)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("14_kmyva")
+
+[node name="TituloVetor3" type="Sprite2D" parent="."]
+position = Vector2(520, 490)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("15_e1up6")
 
 [node name="HUD" parent="." instance=ExtResource("3_vxlsc")]
 
@@ -153,10 +160,19 @@ stream = ExtResource("10_8nf3x")
 [node name="GameTitleMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_7wqmu")
 volume_db = -2.81
-autoplay = true
 
 [node name="GameWinMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_ekctx")
 
 [node name="GameWinSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_mi8wk")
+
+[node name="Borda1" type="Sprite2D" parent="."]
+position = Vector2(929, 480)
+scale = Vector2(1.03158, 1)
+texture = ExtResource("29_ptlop")
+
+[node name="Borda2" type="Sprite2D" parent="."]
+position = Vector2(95.5, 480)
+scale = Vector2(1.00526, 1)
+texture = ExtResource("29_ptlop")

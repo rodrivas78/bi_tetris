@@ -32,13 +32,14 @@ bg_color = Color(0.470588, 0.654902, 0.490196, 1)
 
 [node name="Panel" type="Panel" parent="."]
 modulate = Color(0, 0, 0.360784, 1)
-offset_left = 1119.0
+offset_left = 1112.0
 offset_top = 134.0
-offset_right = 1319.0
+offset_right = 1312.0
 offset_bottom = 284.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_xosvn")
 
 [node name="RedTilesPanel" type="Panel" parent="."]
+visible = false
 modulate = Color(0.168627, 0.85098, 0.231373, 1)
 offset_left = 1119.0
 offset_top = 661.0
@@ -48,6 +49,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_gt3c6")
 script = ExtResource("1_ew37b")
 
 [node name="BlueTilesPanel" type="Panel" parent="."]
+visible = false
 modulate = Color(0.168627, 0.85098, 0.231373, 1)
 offset_left = 1119.0
 offset_top = 756.0
@@ -57,9 +59,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_gt3c6")
 script = ExtResource("2_o10fp")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 1135.0
+offset_left = 1128.0
 offset_top = 60.0
-offset_right = 1315.0
+offset_right = 1308.0
 offset_bottom = 105.0
 theme_override_font_sizes/font_size = 30
 text = "NEXT PIECE:"
@@ -67,26 +69,27 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ScoreLabel" type="Label" parent="."]
-offset_left = 1103.0
-offset_top = 545.0
-offset_right = 1343.0
-offset_bottom = 590.0
+offset_left = 1096.0
+offset_top = 659.0
+offset_right = 1336.0
+offset_bottom = 707.0
 theme_override_font_sizes/font_size = 30
 text = "Score: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HiScoreLabel" type="Label" parent="."]
-offset_left = 1103.0
-offset_top = 593.0
-offset_right = 1343.0
-offset_bottom = 638.0
+offset_left = 1096.0
+offset_top = 707.0
+offset_right = 1336.0
+offset_bottom = 752.0
 theme_override_font_sizes/font_size = 30
 text = "Hi-Score: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PiecesLabel" type="Label" parent="."]
+visible = false
 offset_left = 1103.0
 offset_top = 324.0
 offset_right = 1343.0
@@ -97,6 +100,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RedTilesLabel" type="Label" parent="."]
+visible = false
 offset_left = 1103.0
 offset_top = 666.0
 offset_right = 1343.0
@@ -107,6 +111,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BlueTilesLabel" type="Label" parent="."]
+visible = false
 offset_left = 1103.0
 offset_top = 762.0
 offset_right = 1343.0
@@ -138,9 +143,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="StageLabel" type="Label" parent="."]
-offset_left = 1103.0
+offset_left = 1096.0
 offset_top = 858.0
-offset_right = 1343.0
+offset_right = 1336.0
 offset_bottom = 903.0
 theme_override_font_sizes/font_size = 30
 text = "Level: 1"
@@ -172,9 +177,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="StartButton" type="Button" parent="."]
-offset_left = 1134.0
+offset_left = 1127.0
 offset_top = 403.0
-offset_right = 1314.0
+offset_right = 1307.0
 offset_bottom = 443.0
 theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_42puf")
@@ -185,9 +190,9 @@ text = "NEW GAME"
 
 [node name="ContinueButton" type="Button" parent="."]
 visible = false
-offset_left = 1134.0
+offset_left = 1128.0
 offset_top = 475.0
-offset_right = 1314.0
+offset_right = 1308.0
 offset_bottom = 515.0
 theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_42puf")

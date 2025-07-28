@@ -127,7 +127,7 @@ var special_positions := []
 @onready var panel_red_node = $HUD.get_node("RedTilesPanel")
 @onready var panel_blue_node = $HUD.get_node("BlueTilesPanel")
 @onready var closed_board = get_node("Sprite2D2")
-@onready var title = get_node("SpriteTitle")
+@onready var title = get_node("TituloVetor3")
 @onready var sprite_press_new = get_node("SpritePressNewGame")
 @onready var sprite_logo = get_node("SpriteLogo")
 @onready var orb_logo = get_node("SpriteLogo2")
@@ -171,6 +171,7 @@ func new_game():
 	title.visible = false
 	sprite_press_new.visible = false
 	sprite_logo.visible = false
+	sprite_bg_win.visible = false
 	# Se for um novo jogo (não continuação), resetamos tudo
 	if not is_continue_enabled:
 		stage = 1
@@ -180,7 +181,7 @@ func new_game():
 		if not isMusicSilenced:
 			gameMusic.volume_db = 0.0
 			gameMusic.stop()
-			gameMusic.play()
+			#gameMusic.play()
 		else: 
 			gameMusic.volume_db = 0.0
 			gameMusic.stop
@@ -444,7 +445,7 @@ func toggle_music():
 		return  # Se estiver silenciado, não faz mais nada
 
 	if isMusicPaused:
-		gameMusic.play()  # Retoma a música
+		#gameMusic.play()  # Retoma a música
 		gameMusic.seek(playbackPosition)  # Retorna à posição de reprodução
 		isMusicPaused = false
 	else:
