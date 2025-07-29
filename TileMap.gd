@@ -132,7 +132,7 @@ var special_positions := []
 @onready var sprite_logo = get_node("SpriteLogo")
 @onready var orb_logo = get_node("SpriteLogo2")
 @onready var sprite_bg_win = get_node("SpriteWinScreen")
-@onready var sprite_you_won = get_node("SpriteYouWon")
+#@onready var sprite_you_won = get_node("SpriteYouWon")
 @onready var sprite_credits_one = get_node("SpriteCredits")
 @onready var sprite_credits_two = get_node("SpriteCredits2")
 @onready var sprite_esc_to_return = get_node("SpriteEscToReturn")
@@ -140,9 +140,9 @@ var special_positions := []
 @onready var moveSound : AudioStreamPlayer = $AudioStreamPlayer
 @onready var rotateSound : AudioStreamPlayer = $AudioStreamPlayer2
 @onready var dockSound : AudioStreamPlayer = $AudioStreamPlayer3
-@onready var dockSound2 : AudioStreamPlayer = $AudioStreamPlayer4
+#@onready var dockSound2 : AudioStreamPlayer = $AudioStreamPlayer4
 @onready var gameOverSound : AudioStreamPlayer = $GameOverSound
-@onready var levelCompletedSound : AudioStreamPlayer = $LevelCompletedSound
+#@onready var levelCompletedSound : AudioStreamPlayer = $LevelCompletedSound
 @onready var scoreSound : AudioStreamPlayer = $ScoreSound
 @onready var gameTitleMusic : AudioStreamPlayer = $GameTitleMusic
 @onready var gameWinMusic : AudioStreamPlayer = $GameWinMusic
@@ -300,10 +300,10 @@ func _process(delta):
 			move_piece(auto_move_direction)  # Movimento automático
 			auto_step = 0  # Resetar apenas o movimento automático
 			
-	if end_of_the_game:
-		if Input.is_action_just_pressed("return_to_main_menu"):
-			cancel_sequence()
-			go_to_splash_screen()
+	#if end_of_the_game:
+		#if Input.is_action_just_pressed("return_to_main_menu"):
+			#cancel_sequence()
+			#go_to_splash_screen()
 					
 func pick_piece():
 	var piece
@@ -553,7 +553,10 @@ func check_game_over():
 			$HUD.get_node("GameOverLabel").show()
 			$HUD.get_node("ContinueButton").show()
 			$HUD.get_node("StartButton").flat = true
-			$HUD.get_node("ContinueButton").pressed.connect(continue_game)
+			var button = $HUD.get_node("ContinueButton")
+			var callable = Callable(self, "continue_game")
+			if not button.is_connected("pressed", callable):
+				button.pressed.connect(callable)
 			game_running = false
 
 func updateHudLabels():
@@ -574,99 +577,99 @@ func stop_music():
 	if gameMusic.volume_db <= -35.0:  # Verifica se o volume já está muito baixo
 		gameMusic.stop()
 
-func show_victory():
-	sprite_you_won.visible = true  # Torna o sprite visível
-	
-	var start_position = sprite_you_won.position
-	var target_position = Vector2(start_position.x, get_viewport_rect().size.y * 0.2)  # 80% da tela
-	
-	var tween = create_tween()  # Cria um tween no Godot 4
-	tween.tween_property(sprite_you_won, "position", target_position, 4.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	
-func show_win_background():
-	sprite_bg_win.visible = true
-	sprite_bg_win.modulate.a = 0.0  # Começa completamente invisível
-	var tween = create_tween()
-	tween.tween_property(sprite_bg_win, "modulate:a", 1.0, 2.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
-
-func show_credits_one():
-	sprite_credits_one.visible = true  
-	var target_position = Vector2(sprite_credits_one.position.x, get_viewport_rect().size.y * 0.42)  
-	var tween = create_tween()  
-	tween.tween_property(sprite_credits_one, "position", target_position, 14.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
-	
-func show_credits_two():
-	sprite_credits_two.visible = true  
-	var target_position = Vector2(sprite_credits_two.position.x, get_viewport_rect().size.y * 0.68)  
-	var tween = create_tween()  
-	tween.tween_property(sprite_credits_two, "position", target_position, 14.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
-
-func fade_in_orb_logo():
-	orb_logo.visible = true
-	orb_logo.modulate.a = 0.0  # Começa completamente invisível
-	var tween = create_tween()
-	tween.tween_property(orb_logo, "modulate:a", 1.0, 4.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
-
-func show_esc_to_return():
-	sprite_esc_to_return.visible = true
-	sprite_esc_to_return.modulate.a = 0.0  # Começa completamente invisível
-	var tween = create_tween()
-	tween.tween_property(sprite_esc_to_return, "modulate:a", 1.0, 4.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
-	
-func go_to_splash_screen():
-	await set_win_music_fade_out()
-	sprite_esc_to_return.visible = false
-	orb_logo.visible = false
-	sprite_credits_one.visible = false
-	sprite_credits_two.visible = false
-	sprite_you_won.visible = false
-	start_button.visible = true
-	sprite_bg_win.visible = false
-	reset_credits_sprites_position()
-	#end_of_the_game = false
-	
-	gameTitleMusic.play()
-	title.visible = true
-	sprite_press_new.visible = true
-	sprite_press_new.enable_blink()
-	sprite_logo.visible = true
-
-func set_win_music_fade_out():
-	var tween = create_tween()
-	tween.tween_property(gameWinMusic, "volume_db", -40.0, 2.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
-	tween.tween_callback(stop_win_music)
-	await get_tree().create_timer(2).timeout
-	
-func stop_win_music():
-	if gameMusic.volume_db <= -35.0:  # Verifica se o volume já está muito baixo
-		gameMusic.stop()
-
-func reset_credits_sprites_position():
-	sprite_you_won.position = Vector2(505, 1016)
-	sprite_credits_one.position = Vector2(512, 1056)
-	sprite_credits_two.position = Vector2(512, 1107)
-	
-func start_sequence():
-	cancel_requested = false
-
-	await delay(6)
-	if cancel_requested: return
-	show_credits_one()
-
-	await delay(14)
-	if cancel_requested: return
-	show_credits_two()
-
-	await delay(14)
-	if cancel_requested: return
-	fade_in_orb_logo()
-
-	await delay(4)
-	if cancel_requested: return
-	show_esc_to_return()
-
-func cancel_sequence():
-	cancel_requested = true
-
-func delay(seconds: float):
-	await get_tree().create_timer(seconds).timeout
+#func show_victory():
+	##sprite_you_won.visible = true  # Torna o sprite visível
+	#
+	##var start_position = sprite_you_won.position
+	##var target_position = Vector2(start_position.x, get_viewport_rect().size.y * 0.2)  # 80% da tela
+	#
+	##var tween = create_tween()  # Cria um tween no Godot 4
+	##tween.tween_property(sprite_you_won, "position", target_position, 4.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	#
+#func show_win_background():
+	#sprite_bg_win.visible = true
+	#sprite_bg_win.modulate.a = 0.0  # Começa completamente invisível
+	#var tween = create_tween()
+	#tween.tween_property(sprite_bg_win, "modulate:a", 1.0, 2.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
+#
+#func show_credits_one():
+	#sprite_credits_one.visible = true  
+	#var target_position = Vector2(sprite_credits_one.position.x, get_viewport_rect().size.y * 0.42)  
+	#var tween = create_tween()  
+	#tween.tween_property(sprite_credits_one, "position", target_position, 14.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
+	#
+#func show_credits_two():
+	#sprite_credits_two.visible = true  
+	#var target_position = Vector2(sprite_credits_two.position.x, get_viewport_rect().size.y * 0.68)  
+	#var tween = create_tween()  
+	#tween.tween_property(sprite_credits_two, "position", target_position, 14.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
+#
+#func fade_in_orb_logo():
+	#orb_logo.visible = true
+	#orb_logo.modulate.a = 0.0  # Começa completamente invisível
+	#var tween = create_tween()
+	#tween.tween_property(orb_logo, "modulate:a", 1.0, 4.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
+#
+#func show_esc_to_return():
+	#sprite_esc_to_return.visible = true
+	#sprite_esc_to_return.modulate.a = 0.0  # Começa completamente invisível
+	#var tween = create_tween()
+	#tween.tween_property(sprite_esc_to_return, "modulate:a", 1.0, 4.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
+	#
+#func go_to_splash_screen():
+	#await set_win_music_fade_out()
+	#sprite_esc_to_return.visible = false
+	#orb_logo.visible = false
+	#sprite_credits_one.visible = false
+	#sprite_credits_two.visible = false
+	#sprite_you_won.visible = false
+	#start_button.visible = true
+	#sprite_bg_win.visible = false
+	#reset_credits_sprites_position()
+	##end_of_the_game = false
+	#
+	#gameTitleMusic.play()
+	#title.visible = true
+	#sprite_press_new.visible = true
+	#sprite_press_new.enable_blink()
+	#sprite_logo.visible = true
+#
+#func set_win_music_fade_out():
+	#var tween = create_tween()
+	#tween.tween_property(gameWinMusic, "volume_db", -40.0, 2.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
+	#tween.tween_callback(stop_win_music)
+	#await get_tree().create_timer(2).timeout
+	#
+#func stop_win_music():
+	#if gameMusic.volume_db <= -35.0:  # Verifica se o volume já está muito baixo
+		#gameMusic.stop()
+#
+#func reset_credits_sprites_position():
+	#sprite_you_won.position = Vector2(505, 1016)
+	#sprite_credits_one.position = Vector2(512, 1056)
+	#sprite_credits_two.position = Vector2(512, 1107)
+	#
+#func start_sequence():
+	#cancel_requested = false
+#
+	#await delay(6)
+	#if cancel_requested: return
+	#show_credits_one()
+#
+	#await delay(14)
+	#if cancel_requested: return
+	#show_credits_two()
+#
+	#await delay(14)
+	#if cancel_requested: return
+	#fade_in_orb_logo()
+#
+	#await delay(4)
+	#if cancel_requested: return
+	#show_esc_to_return()
+#
+#func cancel_sequence():
+	#cancel_requested = true
+#
+#func delay(seconds: float):
+	#await get_tree().create_timer(seconds).timeout
